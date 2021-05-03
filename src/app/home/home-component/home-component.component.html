@@ -1,0 +1,50 @@
+<mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">E-Commerce</h1>
+</mat-toolbar>
+<mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" style="background-color: rgb(182, 179, 179);" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+        <mat-nav-list>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field floatLabel="never">
+                <input matInput placeholder="Search">
+            </mat-form-field>
+            <div *ngFor="let mainMenu of mainMenu">
+                <mat-list-item (click)="showSubMenuSideBar(mainMenu.name)" [routerLink]="[mainMenu.routing]" class="parent" [ngClass]="{'click' : mainMenu.isShow}">
+                    <mat-icon mat-list-icon>{{mainMenu.icon}}</mat-icon>
+                    <span class="full-width" *ngIf="isExpanded || isShowing">{{mainMenu.name}}</span>
+                    <div *ngIf="mainMenu.name != 'Dashboard' ">
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : mainMenu.isShow}" *ngIf="isExpanded|| isShowing">expand_more</mat-icon>
+                    </div>
+                </mat-list-item>
+                <div *ngIf="mainMenu.isShow">
+                    <div *ngFor="let subMenu of subMenu" style="background-color: rgb(211, 207, 207);">
+                        <mat-list-item (click)="showSubSubMenuSideBar(subMenu.name)" class="parent" [ngClass]="{'clickSubmenu' : subMenu.isShow}">
+                            <mat-icon mat-list-icon>&nbsp;{{subMenu.icon}}</mat-icon>
+                            <span class="full-width" style="font-size: 13px;" *ngIf="isExpanded || isShowing">&nbsp;{{subMenu.name}}</span>
+                        </mat-list-item>
+                    </div>
+                </div>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+        <footer class="page-footer font-small blue">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright: Me
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+    </div>
+
+</mat-sidenav-container>
+
+
+
+<!-- Copyright 2017 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

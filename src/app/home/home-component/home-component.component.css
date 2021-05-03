@@ -1,0 +1,45 @@
+.example-container {
+    height: 700px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+    height: 100%;
+}
+
+.example-sidenav {
+    user-select: none;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(-90deg);
+}
+
+.menu-button.rotated {
+    transform: rotate(0deg);
+}
+
+.submenu {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 30px;
+}
+
+.submenu.expanded {
+    transform: scaleY(1);
+}
+
+.click {
+    background-color: dimgray;
+}
+
+.clickSubmenu {
+    background-color: rgb(143, 142, 142);
+}
